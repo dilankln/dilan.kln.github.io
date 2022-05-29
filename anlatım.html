@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayfanın Anlatımı</title>
+</head>
+<body>
+    <p>Merhaba arkadaşlar sayfamın css ve html kısımlarını sizlere anlatmayacağım.<br>
+    Çünkü hepiniz basit de olsa birer sayfa yapmayı biliyorsunuzdur.Önemli olan Javascript <br>
+kısımlarıdır.Anlatımımı dinlemeden önce kahvenizi hazırlamayı unutmayın.</p>
+<p>Yüklediğim Html ve Css kodlarındaki 'id' ve 'class' isimleriyle karşılaştırarak javascript kodlarını<br>
+yazmanızı tavsiye ediyorum.</p>
+<p>Öncelikle alışveriş bir tane 'javascript'dosyası açın.<br>
+    Sonrasında ise sayfamızın değişkenlerini yazalım.<br>
+    <b>
+        const cartBtn =document.querySelector(".cart-btn");<br>
+        const clearCartBtn =document.querySelector(".btn-clear");<br>
+        const cartItems =document.querySelector(".cart-items");<br>
+        const cartTotal =document.querySelector(".total-value");<br>
+        const cartContent =document.querySelector(".cart-list");<br>
+        const productsDOM =document.querySelector("#products-dom");<br>
+    </b><br>
+        Satırlarda ki <b> const </b> yanındaki isimlerde htmlde yazdığım butonlara verdiğim sınıf adıdır.<b> document.querySelector </b> yazdığım bu kod
+    belirlenen id ve  class'lardaki parantez içerisine etki etmesini sağlar.<br>
+</p>
+    <b>
+        class Products{<br>
+            async getProducts(){<br>
+                try{<br>
+                    let result = await fetch("https://628969ede5e5a9ad32190086.mockapi.io/products");<br>
+                    let data = await result.json();<br>
+                    let products = data;<br>
+                    return products;<br>
+                }catch(error){<br>
+                    console.log(error);<br>
+                }
+            }
+        }
+    </b>
+    <p>'Products' diye oluşturulan sınıfa özellikler kattım burada da.<br>
+        'async' yapısı promise yapısını daha kolay yazmamızı sağlayan özelliktir.<br>
+        'try-catch' hata olduğunda catch kısmının çalışmasını sağlar bende catch kısmına konsola hatayı yazdırmasını istedim.Hatayı düzeltmeyi kolaylaştırsın diye.
+        'try' içerisine döndürülmesini istediğim özellikleri yazdım.Gelin bunlar neymiş bakalım;
+        Öncelikle kendime mockapi'den API oluşturdum.Sayfamdaki ürünleri oradan çekeceğim.O kısmı bu kodları anlattıktan sonra anlatacağım.
+        'await fetch'den sonra parantez içindeki url'den veri çekilmesini sağlar.<br>
+        'result.json' ise veriyi okumaya yarar sağlar.<br>
+        'let products=data' çekilen verilere izin vermeye yardımcı olur ve ürünlere ekler.
+    </p>
+    <p>Şimdi mockapide API oluşturmayı anlatacağım;Öncelikle arama motoruna 'mockapi' yazın.<br><br><br>
+    <img src="Ekran görüntüsü 2022-05-25 182059.jpg" href="https://mockapi.io/projects" height="200px"><br>
+    <p>Görseldeki ilk seçeneğe tıklayıp karşınıza çıkan ekranda 'GET STARTED' yazısına tıklayın.
+    </p>
+    </p>
+    <img src="2.jpg" href="" height="200px"><br>
+    <img src="3.jpg" href="" height="400px"><br>
+    <p>Kaydolma işlemini istediğiniz şekilde yapın.</p>
+    <img src="4.jpg" href="" height="100px"><br>
+    <p>Buradaki + işaretine tıklayarak yeni proje oluşturuyorsunuz. 
+    </p>
+    <img src="5.jpg" height="400px"><br>
+    <p>Proje adını istediğiniz şekilde yazabilirsiniz.</p><br>
+    <img src="6.jpg" height="100px"><br>
+    <p>Buraya tıklayın.</p>
+    <img src="7.jpg" height="99px"><br>
+    <p>Sizi yukarıdaki ekran karşılayacaktır.30 Yazan yer sayfamdaki ürün sayısıdır.İsteğinize göre çoğaltıp azaltabilirsiniz.Burada 'Data'ya tıklayın.</p>
+    <img src="8.jpg" height="400px"><br>
+    <p>Evvet istediğiniz ürünleri gösterdiğim örnekteki gibi ekleyin.</p>
+    <p>Burada işimiz bitti.Haydi gelin kod dinlemeye devam edin.</p>
+    <b>
+        class UI{<br>
+            displayProducts(products){<br>
+               let result = "";<br>
+               products.forEach(item => {<br>
+                   result += `<br>
+                   *< div class="col-lg-4 col-md-6"><br>
+                   < div class="product"><br>
+                       < div class="product-image"><br>
+                           < img src="${item.image}" alt="product"><br>
+                       < /div><br>
+                    < div class="product-hover"><br>
+                           < span class="product-title">${item.title}< /span><br>
+                           < span class="product-price">${item.price} TL< /span><br>
+                           < button class="btn-add-to-cart" data-id=${item.id}><br>
+                               < i class="fas fa-cart-shopping">< /i><br>
+                           < /button><br>
+                       < /div>
+                   < /div> 
+                < /div>`
+               });<br>
+               *productsDOM.innerHTML = result;<br>
+            }
+    </b>
+    <p>UI adında oluşturulan sınıfın özelliklerini anlatacağım sizlere.Sırayla söyleyeceğim ilk olarak:<br>
+    'displayProducts' demek ürünleri görüntülemeyi sağlar.<br>
+    Başına * işaretli olan kısım html kısmından gerekli olan yerin kodlarıdır.Orada $ ile yazdıklarım apı'den<br>
+    çektiğim ürünlerin hepsine sırayla başlık fiyat ve resim eklemesini sağlıyor.Tek tek eklemekle uğraşmasını engelliyor.<br>
+    İkinci * da ise html deki görüntülenen son hali göstermeye yarar.<br>
+</p>
+<p>Yukarıda açılan UI sınıfının içerisine altta verdiğim kodları ekleyin.</p>
+<b>
+    getBagButtons(){<br>
+        const buttons = [...document.querySelectorAll(".btn-add-to-cart")];<br>
+        buttonsDOM = buttons;<br>
+        buttons.forEach(button =>{<br>
+            let id = button.dataset.id;<br>
+            let inCart = cart.find(item => item.id === id);<br>
+            if(inCart){<br>
+                button.setAttribute("disabled","disabled");<br>
+                button.opacity = ".3";<br>
+            }else{<br>
+                button.addEventListener("click", event =>{<br>
+                    event.target.disabled = true;<br>
+                    event.target.style.opacity = ".3";<br>
+                    /*ürün ekleme */<br>
+                    let cartItem = {...Storage.getProduct(id), amount: 1};<br>
+                    //* karta ekleme işlemi<br>
+                    cart = [...cart,cartItem];<br>
+                    //*locale ekleme<br>
+                    Storage.saveCart(cart);<br>
+                    //*sepetteki arttır/azalt kısmı<br>
+                    this.saveCartValues(cart);<br>
+                    //*sepete ekleme<br>
+                    this.addCartItem(cartItem);<br>
+                    //*sepete eklenince açılacak<br>
+                    this.showCart();<br>
+                    
+                })
+            }
+        })
+    }
+</b>
+<p>Şimdi bir önceki kodda yer alan 'btn-add-to-cart' sınıfına bir dizi oluşturuyorum.Bu kodlarda ki amaç sepete eklediğin ürünün üzerine bir kez daha tıklamanı engelliyor.<br>
+Diyelim ki bir ürünü ekledin sepete sepet işaretinin opaklığını düşürüp tıklanmasını 'disabled' ile engelledim.Sonrasında son durumları gösterdim sayfamda.<br>
+</p>
+<img src="9.jpg" height="400px"><br>
+<p>Bakın burada sepet işareti canlı ve tıklanabilir halde.Gelin sepete bu ürünü ekleyelim ve sonrasında ne olduğuna bakalım.<br></p>
+<img src="10.jpg" height="300px"><br>
+<img src="11.jpg" height="400px"><br>
+<p>Gördüğünüz gibi sepet işaretinin opaklığı değişti.</p>
+<b>
+    saveCartValues(cart){<br>
+        let tempTotal = 0;<br>
+        let itemsTotal = 0;<br>
+        cart.map(item =>{<br>
+            tempTotal += item.price * item.amount;<br>
+            itemsTotal += item.amount;<br>
+        });
+
+        cartTotal.innerText = parseFloat(tempTotal.toFixed(2));<br>
+        cartItems.innerText = itemsTotal;<br>
+    }
+</b>
+<p>Şimdi anlatacağım kısım sepetteki arttırma ve azaltma işaretlerini ayarlama.Önce sepetteki ürün mikatarını ve toplam tutarı 0 yaptım.
+    Sonrasında karta eklenen ürün varsa o ürünün fiyatını <br> eklenen sayı ile çarpmasını sağladım.
+    Ve toplam ücrete eklenen sayının fiyatını eklettim.En sonda ise güncel hallerini ekranda göstermesini sağladım.<br>
+</p>
+<p>En önemli kısıma geldik dikkatinizi toplayıp güzeelce dinleyin.</p>
+<b>
+    setupAPP(){ //*sayfa yüklendiğinde olur<br>
+        cart = Storage.getCart();<br>
+        this.saveCartValues(cart);<br>
+        this.populateCart(cart); //*sepete yükleme sırası <br>
+    }
+</b>
+<p>'SetupAPP' diye sınıf oluşturdum.Sayfa yeniden yüklendiğinde sepetin olduğu gibi kalmasını sağlıyor.Dİğer kod olan 'populateCart'<br>
+ise sepetteki ürünlerin sıralanmasını sağlar.</p>
+<b>
+    cartLogic(){<br>
+        clearCartBtn.addEventListener("click",()=>{<br>
+            this.clearCart();<br>
+        })<br>
+        cartContent.addEventListener("click",event => {<br>
+            if(event.target.classList.contains("cart-remove-btn")){<br>
+            let removeItem =  event.target;<br>
+            let id = removeItem.dataset.id;<br>
+            removeItem.parentElement.parentElement.parentElement.remove();<br>
+            this.removeItem(id);<br>
+        }else if(event.target.classList.contains("quantity-minus")){<br>
+            let lowerAmount = event.target;<br>
+            let id = lowerAmount.dataset.id;<br>
+            let tempItem = cart.find(item =>item.id === id);<br>
+            tempItem.amount = tempItem.amount -1;<br>
+            if(tempItem.amount > 0){<br>
+                Storage.saveCart(cart);<br>
+                this.saveCartValues(cart);<br>
+                lowerAmount.nextElementSibling.innerText = tempItem.amount;<br>
+            }else{<br>
+                lowerAmount.parentElement.parentElement.parentElement.remove();<br>
+                this.removeItem(id);<br>
+            }<br>
+        }else if(event.target.classList.contains("quantity-plus")){<br>
+            let addAmount = event.target;<br>
+            let id = addAmount.dataset.id;<br>
+            let tempItem = cart.find(item =>item.id === id);<br>
+            tempItem.amount = tempItem.amount +1;<br>
+            Storage.saveCart(cart);<br>
+            this.saveCartValues(cart);<br>
+            addAmount.previousElementSibling.innerText = tempItem.amount;<br>
+        }
+    })
+    }
+</b>
+<p>Evvet bitmek üzere az kaldı sabredin bakkim.Burada yaptığım şey sepetteki azaltma ve arttırma işaretlerinin çalışma düzenidir.
+    Sepette bir üründen 4 tane var diyelim.<br>
+    Azalt işaretine tıkladığımızda bir bir azaltıyor 0 olduğunda ise ürünü sepetten siliyor.Arttırma da anlattığımın tam tersi olarak çalışıyor.Yani bir bir arttır kodu devreye giriyor bu sefer.
+
+</p>
+<p>Önemli kodlar bunlar olduğu için diğerleri de bu anlattıklarımla aynı bakarak ilerlerseniz sizin için daha iyi olacaktır.</p>
+<b>
+    document.addEventListener("DOMContentLoaded", ()=>{<br>
+        const ui = new UI();<br>
+        const products = new Products();<br>
+        ui.setupAPP();<br>
+        products.getProducts().then(products =>{<br>
+            ui.displayProducts(products);<br>
+            Storage.saveProducts(products);<br>
+        }).then(()=>{<br>
+            ui.getBagButtons();<br>
+            ui.cartLogic();<br>
+        })
+    });
+</b>
+<p>Bu yukarıda yazılan kodlar fonksiyonu çağırmaya yarayan kodlardır.</p>
+<p>Buraya kadar sıkılmadan okuyanlara teşekkür ediyorum.Umarım anlamışsınızdır.</p>
+</body>
+</html>

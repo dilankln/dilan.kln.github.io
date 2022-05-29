@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!--font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+    crossorigin="anonymous">
+    <title>ALIŞVERİŞ KARTI</title>
+</head>
+<body>
+    <!--header başlangıcı-->
+    <header class="header-area">
+        <div class="container">
+            <div class="navbar">
+                <div class="navbar-left">
+                    <div class="navbar-middle">
+                        <div class="logo">
+                            DİLANİGA
+                        </div>
+                        <div class="navbar-right"><br>
+                            <button class="cart-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+                                <span class="cart-items">0</span>
+                                <i class="fas fa-cart-shopping"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--header sonu-->
+    <!--banner başlangıcı-->
+    <div class="banner-area">
+        <div class="banner-image">
+            <img src="pexels-tembela-bohle-1884584.jpg" alt="banner image"/>
+        </div>
+        <div class="banner-content"><br><br>
+            <span class="banner-content-subtitle">TARZINI OLUŞTUR</span>
+            <span class="banner-content-title">Senin Zevkin Senin Tarzın</span>
+            <span class="banner-content-text">Tarzını Oluşturup Bize Göndermeye Ne Dersin?</span>
+            <a class="banner-content-link" href="anlatım.html">Sayfanın Yapımını Öğren</a>
+
+        </div>
+    </div>
+    <!--banner sonu-->
+    <!--product list başlangıcı-->
+    <div class="product-area">
+        <div class="container">
+            <h2 class="product-area-tittle">DİLAN COLLECTION</h2>
+            <div class="row" id="products-dom">
+                <!--<div class="col-lg-4 col-md-6">
+                   <div class="product">
+                       <div class="product-image">
+                           <img src="pexels-cottonbro-4937449.jpg" alt="product">
+                       </div>
+                       <div class="product-hover">
+                           <span class="product-title">Kırmızı Takım</span>
+                           <span class="product-price">450TL</span>
+                           <button class="btn-add-to-cart">
+                               <i class="fas fa-cart-shopping"></i>
+                           </button>
+                           
+                       </div>
+                       
+                   </div> 
+                   
+                </div>-->
+                </div>
+            </div>
+        </div>
+    
+    <!--product list sonu-->
+    <!--cart list başlangıcı-->
+    <div class="offcanvas offcanvas-end" id="offcanvasRight">
+        <div class="offcanvas-header">
+            <h5>Alışveriş Sepetim</h5>
+            <button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="Close" ></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="shopping-cart">
+                <ul class="cart-list">
+                   <!-- <li class="cart-list-item">
+                        <div class="cart-left">
+                            <div class="cart-left-image">
+                                <img src="pexels-cottonbro-4937449.jpg" alt="product">
+                            </div>
+                            <div class="cart-left-info">
+                                <a class="cart-left-info-title" href="#">Kırmızı Takım</a>
+                                 <span class="cart-left-info-price">450 TL</span>
+                            </div>
+                        </div>
+                        <div class="cart-right">
+                            <div class="cart-right-quantity">
+                                <button class="quantity-minus">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="quantity">0</span>
+                                <button class="quantity-plus">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            
+                        </div>
+                    </li> -->
+                </ul>
+                <div class="shopping-cart-bottom">
+                    <div class="total">
+                        <div class="total-title">Toplam Ücret</div>
+                        <span class="total-value">0 TL</span>
+                    </div>
+                    <button class="btn-clear" type="button">Temizle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--boostrap javascript cdn-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!--script-->
+    <script src="script.js"></script>
+</body>
+</html>
